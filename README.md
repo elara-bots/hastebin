@@ -26,6 +26,16 @@
 - Create & View Hastes on the site.
 - API support
 - Stores hastes for 2 weeks (configurable in `worker.js` with the `options.expireTTL` option, requires it to be in seconds)
+- API KEYS
+<details>
+  <summary>API KEY INFO</summary>
+  1) Go to the application's settings tab<br>
+  2) Go to `Variables` then go to `Environment Variables`<br>
+  3) Create a `Variable` with the name `HASTE_KEYS` with the `value` being any keys you want to be able to create hastes (through the API and Website)<br><br>
+
+  To add more than one key just split the keys by `, `<br>
+  - Example: `key1, key2, key3`
+</details>
 
 # API: 
 - POST: `https://<website_url>/documents` with `text/plain` header and send the string in the body of the request.
