@@ -65,14 +65,9 @@ function createObj(content) {
   const date = new Date();
   return {
     "key": generate(20, { upperLetters: false, numbers: true, lowerLetters: false, symbols: false }),
-    "userID": "691038623939690626",
     "created": date.toISOString(),
     "expire": new Date(date.getTime() + (options.expireTTL * 1000)).toISOString(),
-    "private": false,
     "title": options.name,
-    "neverdelete": false,
-    "content": content,
-    "views": 0,
     "data": content,
   }
 }
@@ -130,7 +125,7 @@ const generateHTML = () => {
     
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"><\/script>
         <script type="text/javascript" src="${js("highlight")}"><\/script>
-        <script type="text/javascript" src="${js("application-v4")}"><\/script>
+        <script type="text/javascript" src="${js("application-v5.1")}"><\/script>
     
         <meta name="robots" content="noindex,nofollow" />
     
