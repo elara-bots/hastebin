@@ -37,6 +37,11 @@
   - Example: `key1, key2, key3`
 </details>
 
+------
+
+## TODO: 
+- [ ] Encrypt the content being stored. 
+
 # API: 
 - POST: `https://<website_url>/documents` with `text/plain` header and send the string in the body of the request.
 - GET: `https://<website_url>/documents/:id` to get the info 
