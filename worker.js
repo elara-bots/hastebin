@@ -1,5 +1,4 @@
 /* eslint-disable no-useless-escape */
-
 const options = {
   expireTTL: 1209600, // In Seconds, 1209600 (2 Weeks)
   name: "Hastebin", // The name that shows at the top of the tab
@@ -66,10 +65,14 @@ function createObj(content) {
   const date = new Date();
   return {
     "key": generate(20, { upperLetters: false, numbers: true, lowerLetters: false, symbols: false }),
+    "userID": "691038623939690626",
     "created": date.toISOString(),
     "expire": new Date(date.getTime() + (options.expireTTL * 1000)).toISOString(),
+    "private": false,
     "title": options.name,
+    "neverdelete": false,
     "content": content,
+    "views": 0,
     "data": content,
   }
 }
@@ -78,7 +81,7 @@ async function fetchBin(env, id) {
   if (!env.HASTES) {
     return { status: false, message: `The developer hasn't set the 'HASTES' KVnamespace` };
   }
-  const data = await env.HASTES.get(`docs:${id}`).catch(() => null);
+  const data = await env.HASTES.get(`documents:${id}`).catch(() => null);
   if (!data) {
     return {
       status: false,
@@ -101,7 +104,7 @@ async function createBin(env, content) {
     return { status: false, message: `The developer hasn't set the 'HASTES' KVnamespace` };
   }
   const data = createObj(content);
-  await env.HASTES.put(`docs:${data.key}`, JSON.stringify(data), { expirationTtl: options.expireTTL }).catch(() => null);
+  await env.HASTES.put(`documents:${data.key}`, JSON.stringify(data), { expirationTtl: options.expireTTL });
   return { status: true, ...data };
 }
 
@@ -149,7 +152,7 @@ const generateHTML = () => {
             }, 1000);
             // Construct app and load initial path
             $(function () {
-                app = new haste(`${options.name}`);
+                app = new haste('hastebin');
                 handlePop({ target: window });
             });
         <\/script>
@@ -233,11 +236,21 @@ const getDoc = async (request, env) => {
     if (typeof r === "object" && r.status === false) {
       return responders.json(r);
     }
-    return responders.json({ status: true, ...r, data: r.content });
+    return responders.json({ status: true, ...r });
   }
   return responders.html(generateHTML());
 };
 const postDoc = async (request, env) => {
+  if (env.HASTE_KEYS && env.HASTE_KEYS.length) {
+    const keys = env.HASTE_KEYS.split(", ");
+    if (!keys.length) {
+      return responders.error(`The site owner hasn't set the HASTE_KEYS`);
+    }
+    const key = request.headers['authorization'];
+    if (!keys.includes(key)) {
+      return responders.error(`Unauthorized.`);
+    }
+  }
   const content = await request.text();
   if (!content) {
     return responders.error(`You failed to provide any content.`);
@@ -247,7 +260,7 @@ const postDoc = async (request, env) => {
     return responders.error(`I was unable to create the haste.`);
   }
   // @ts-ignore
-  return responders.json({ status: true, ...r, data: r.content });
+  return responders.json({ status: true, ...r });
 };
 
 export default {
@@ -260,4 +273,3 @@ export default {
     return new Response(`Hello World from ${request.method}!`);
   }
 }
-
