@@ -2,15 +2,15 @@
 
 const options = {
   expireTTL: 1209600, // In Seconds, 1209600 (2 Weeks)
-  name: "Elara Hastebin",
-  icon: "https://raw.githubusercontent.com/DevelopmentPerson69420/cdn/main/d/icons/Elara.png",
+  name: "Hastebin", // The name that shows at the top of the tab
+  icon: "https://cdn.discordapp.com/emojis/792290922749624320.png", // The icon that shows at the top of the tab.
   siteData: {
-    name: `Elara Services`,
-    title: `Hastebin`,
-    description: `A cloudflare workers hastebin service.`,
-    url: `https://p.elara.workers.dev`,
-    color: "#00ffe9",
-    image: `https://cdn.discordapp.com/emojis/880708306761564220.png`,
+    name: `Selfhosted Hastebin`, // The site_name for the oembed
+    title: `View Haste`, // The title for the oembed.
+    description: `A cloudflare workers hastebin service, https://github.com/elara-bots/hastebin`, // The description for the oembed. 
+    url: `https://p.elara.workers.dev`, // The website url for the oembed.
+    color: "#00ffe9", // The hex color code for the oembed.
+    image: `https://cdn.discordapp.com/emojis/792290922749624320.png`, // The thumbnail to use for the oembed.
   },
 }
 const js = (name) => `https://cdn.jsdelivr.net/gh/GoldenAngel2/cdn/js/${name}.min.js`;
