@@ -8,7 +8,7 @@ const options = {
     name: `Selfhosted Hastebin`, // The site_name for the oembed
     title: `View Haste`, // The title for the oembed.
     description: `A cloudflare workers hastebin service, https://github.com/elara-bots/hastebin`, // The description for the oembed. 
-    url: `https://p.elara.workers.dev`, // The website url for the oembed.
+    url: `https://github.com/elara-bots/hastebin`, // The website url for the oembed.
     color: "#00ffe9", // The hex color code for the oembed.
     image: `https://cdn.discordapp.com/emojis/792290922749624320.png`, // The thumbnail to use for the oembed.
   },
