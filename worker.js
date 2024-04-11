@@ -76,7 +76,7 @@ async function fetchBin(env, id) {
   if (!env.HASTES) {
     return { status: false, message: `The developer hasn't set the 'HASTES' KVnamespace` };
   }
-  const data = await env.HASTES.get(`documents:${id}`).catch(() => null);
+  const data = await env.HASTES.get(`docs:${id}`).catch(() => null);
   if (!data) {
     return {
       status: false,
@@ -99,7 +99,7 @@ async function createBin(env, content) {
     return { status: false, message: `The developer hasn't set the 'HASTES' KVnamespace` };
   }
   const data = createObj(content);
-  await env.HASTES.put(`documents:${data.key}`, JSON.stringify(data), { expirationTtl: options.expireTTL });
+  await env.HASTES.put(`docs:${data.key}`, JSON.stringify(data), { expirationTtl: options.expireTTL });
   return { status: true, ...data };
 }
 
