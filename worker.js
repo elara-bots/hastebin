@@ -241,7 +241,7 @@ const postDoc = async (request, env) => {
     if (!keys.length) {
       return responders.error(`The site owner hasn't set the HASTE_KEYS`);
     }
-    const key = request.headers['authorization'];
+    const key = request.headers.get('authorization');
     if (!keys.includes(key)) {
       return responders.error(`Unauthorized.`);
     }
