@@ -25,6 +25,7 @@
 # Features: 
 - Create & View Hastes on the site.
 - API support
+- Stores hastes for 2 weeks (configurable in `worker.js` with the `options.expireTTL` option, requires it to be in seconds)
 
 # API: 
 - POST: `https://<website_url>/documents` with `text/plain` header and send the string in the body of the request.
