@@ -3,14 +3,14 @@
 const options = {
   expireTTL: 1209600, // In Seconds, 1209600 (2 Weeks)
   name: "Hastebin", // The name that shows at the top of the tab
-  icon: "https://cdn.discordapp.com/emojis/792290922749624320.png", // The icon that shows at the top of the tab.
+  icon: "https://raw.githubusercontent.com/GoldenAngel2/cdn/main/img/haste.png", // The icon that shows at the top of the tab.
   siteData: {
     name: `Selfhosted Hastebin`, // The site_name for the oembed
     title: `View Haste`, // The title for the oembed.
     description: `A cloudflare workers hastebin service, https://github.com/elara-bots/hastebin`, // The description for the oembed. 
     url: `https://github.com/elara-bots/hastebin`, // The website url for the oembed.
     color: "#00ffe9", // The hex color code for the oembed.
-    image: `https://cdn.discordapp.com/emojis/792290922749624320.png`, // The thumbnail to use for the oembed.
+    image: `https://raw.githubusercontent.com/GoldenAngel2/cdn/main/img/haste.png`, // The thumbnail to use for the oembed.
   },
 }
 const js = (name) => `https://cdn.jsdelivr.net/gh/GoldenAngel2/cdn/js/${name}.min.js`;
@@ -78,7 +78,7 @@ async function fetchBin(env, id) {
   if (!env.HASTES) {
     return { status: false, message: `The developer hasn't set the 'HASTES' KVnamespace` };
   }
-  const data = await env.HASTES.get(`documents:${id}`).catch(() => null);
+  const data = await env.HASTES.get(`docs:${id}`).catch(() => null);
   if (!data) {
     return {
       status: false,
@@ -101,7 +101,7 @@ async function createBin(env, content) {
     return { status: false, message: `The developer hasn't set the 'HASTES' KVnamespace` };
   }
   const data = createObj(content);
-  await env.HASTES.put(`documents:${data.key}`, JSON.stringify(data), { expirationTtl: options.expireTTL });
+  await env.HASTES.put(`docs:${data.key}`, JSON.stringify(data), { expirationTtl: options.expireTTL }).catch(() => null);
   return { status: true, ...data };
 }
 
@@ -149,7 +149,7 @@ const generateHTML = () => {
             }, 1000);
             // Construct app and load initial path
             $(function () {
-                app = new haste('hastebin');
+                app = new haste(`${options.name}`);
                 handlePop({ target: window });
             });
         <\/script>
