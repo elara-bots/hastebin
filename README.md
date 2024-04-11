@@ -1,5 +1,9 @@
 # Selfhosted Hastebin (Cloudflare Worker)
 
+> Note: You can host this on Cloudflare for free, there is limits to Cloudflare workers but I doubt this will ever hit it. 
+> 100k Requests per-day 
+> 1GB Data limit for KV (unless you're storing millions of hastes per-expire date, you'll be fine.)
+
 1) Go to your [Cloudflae Workers page](https://dash.cloudflare.com) and sign in. 
 2) Click on the `Workers & Pages` tab on the left. 
 3) Click on `KV` tab below `Workers & Pages` tab.
