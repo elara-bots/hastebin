@@ -1,4 +1,10 @@
 # Selfhosted Hastebin (Cloudflare Worker)
+-------
+
+## Public Instances: 
+- Roo Hastebin: https://h.s8n.workers.dev
+
+------
 
 > Notes: 
 > - You can host this on Cloudflare for free, there is limits to Cloudflare workers but I doubt this will ever hit it. <br>
@@ -52,8 +58,3 @@
 
 ## TODO: 
 - [ ] Encrypt the content being stored. 
-
--------
-
-## Public Instances: 
-- Roo Hastebin: `https://h.s8n.workers.dev`
