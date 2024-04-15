@@ -52,3 +52,8 @@
 
 ## TODO: 
 - [ ] Encrypt the content being stored. 
+
+-------
+
+## Public Instances: 
+- [Roo Hastebin](https://h.s8n.workers.dev)
