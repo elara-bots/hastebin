@@ -56,4 +56,4 @@
 -------
 
 ## Public Instances: 
-- [Roo Hastebin](https://h.s8n.workers.dev)
+- Roo Hastebin: `https://h.s8n.workers.dev`
