@@ -1,19 +1,33 @@
 /* eslint-disable no-useless-escape */
-const options = {
+const github = { // DO NOT CHANGE THIS! 
+  main: "elara-bots/hastebin",
+  branch: "main",
+  css: {
+    application: "application",
+    dark: "dark"
+  },
+  js: {
+    application: "application",
+    highlight: "highlight"
+  }
+}
+
+const options = { // YOU CAN CHANGE THIS! 
   expireTTL: 1209600, // In Seconds, 1209600 (2 Weeks)
   name: "Hastebin", // The name that shows at the top of the tab
-  icon: "https://raw.githubusercontent.com/GoldenAngel2/cdn/main/img/haste.png", // The icon that shows at the top of the tab.
+  icon: `https://raw.githubusercontent.com/${github.main}/main/img/haste.png`, // The icon that shows at the top of the tab.
   siteData: {
     name: `Selfhosted Hastebin`, // The site_name for the oembed
     title: `View Haste`, // The title for the oembed.
     description: `A cloudflare workers hastebin service, https://github.com/elara-bots/hastebin`, // The description for the oembed. 
     url: `https://github.com/elara-bots/hastebin`, // The website url for the oembed.
     color: "#00ffe9", // The hex color code for the oembed.
-    image: `https://raw.githubusercontent.com/GoldenAngel2/cdn/main/img/haste.png`, // The thumbnail to use for the oembed.
+    image: `https://raw.githubusercontent.com/${github.main}/main/img/haste.png`, // The thumbnail to use for the oembed.
   },
 }
-const js = (name) => `https://cdn.jsdelivr.net/gh/GoldenAngel2/cdn/js/${name}.min.js`;
-const css = (name) => `https://cdn.jsdelivr.net/gh/GoldenAngel2/cdn/css/${name}.css`;
+
+const css = (name) => `https://cdn.jsdelivr.net/gh/${github.main}@${github.branch}/css/${name}.css`;
+const js = (name) => `https://cdn.jsdelivr.net/gh/${github.main}@${github.branch}/js/${name}.min.js`;
 const responders = {
   success: (data) => responders.json({ status: true, ...data }),
   error: (message = "") => responders.json({ status: false, message }),
@@ -120,12 +134,12 @@ const generateHTML = () => {
         <meta property="og:url" content="${options.siteData.url}">
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <link rel="stylesheet" type="text/css" href="${css("dark")}" />
-        <link rel="stylesheet" type="text/css" href="${css("application")}" />
+        <link rel="stylesheet" type="text/css" href="${css(github.css.dark)}" />
+        <link rel="stylesheet" type="text/css" href="${css(github.css.application)}" />
     
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"><\/script>
-        <script type="text/javascript" src="${js("highlight")}"><\/script>
-        <script type="text/javascript" src="${js("application-v5.1")}"><\/script>
+        <script type="text/javascript" src="${js(github.js.highlight)}"><\/script>
+        <script type="text/javascript" src="${js(github.js.application)}"><\/script>
     
         <meta name="robots" content="noindex,nofollow" />
     
